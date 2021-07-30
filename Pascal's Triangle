@@ -1,0 +1,11 @@
+fact 0 = 1
+fact n = n * fact (n-1)
+
+nCr n r = (fact n) `div` ((fact r) * fact (n-r))
+pascal k = [[nCr n r | r<-[0..n]] | n<-[0..k-1]]
+getRow (x:xs) = (show x) ++ " " ++ (getRow xs)
+getRow [] = ""
+
+main = do
+    x <- readLn :: IO Int
+    mapM_ putStrLn [getRow row | row <- (pascal x)]
