@@ -1,0 +1,2 @@
+rev [] = []
+rev (a:b) = (rev b) ++ [a]
