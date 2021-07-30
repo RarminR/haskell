@@ -1,0 +1,20 @@
+import Data.List.Split
+
+citeste :: Int -> IO [(Int, Int)]
+citeste 0 = do
+    return []
+citeste n = do
+    a <- getLine
+    let [x, y] = map (read :: String -> Int) $ splitOn " " a
+    next <- citeste (n-1)
+    return ((x,y):next)
+
+
+distance (x1, y1) (x2, y2) = sqrt $ fromIntegral $ ((x1 - x2)^2 + (y1 - y2)^2)
+perimeter pts = sum $ zipWith distance pts (tail pts) ++ [distance (head pts) (last pts)]
+
+
+main = do
+    n <- readLn
+    puncte <- citeste n
+    print $ perimeter puncte
