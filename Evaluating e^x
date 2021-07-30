@@ -1,0 +1,10 @@
+import Text.Printf
+
+func :: Double -> Double
+func x = sum [x**n / product [1.0,2.0..n] | n <- [0.0,1.0..9.0]]
+
+a :: String -> Double
+a = read
+
+main :: IO ()
+main = getContents >>= mapM_ (printf "%.4f\n") . map func . map a . tail . words
